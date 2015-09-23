@@ -1,12 +1,12 @@
 var mysql = require("./db_mysql");
 
-function User(username,password,Email,phone,QQ,Company){
-    this.username = username;
-    this.password = password;
-    this.Email = Email;
-    this.phone = phone;
-    this.QQ = QQ;
-    this.Company = Company;
+function User(user){
+    this.username = user.username;
+    this.password = user.password;
+    this.Email = user.Email;
+    this.phone = user.phone;
+    this.QQ = user.QQ;
+    this.Company = user.Company;
 
 }
 
@@ -30,7 +30,7 @@ User.prototype.save = function(callback){
         ');';
     mysql.query(insertSQL,function(err,res){
         if(err) console.log(err);
-        console.log("Save User ==>")
+        console.log("Save User ==>");
         console.log(res);
     });
 
