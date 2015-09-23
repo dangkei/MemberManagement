@@ -1,9 +1,21 @@
-var express = require('express');
-var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+module.exports = function (app){
 
-module.exports = router;
+  /* GET home page. */
+  app.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+
+  app.get('/reg', function(req, res, next) {
+    console.log("reg start");
+    res.render('Reg', { title: 'ÓÃ»§×¢²á' });
+  });
+
+  app.post('/reg',function(req,res,next){
+
+  });
+
+}
+
+
+
