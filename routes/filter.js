@@ -5,7 +5,7 @@
 function filter(req,res,next){
     console.log("Checklogin ");
     if(!req.session.username){
-        res.redirect('/users/login');
+        res.redirect('/users/login',{title:'用户登录'});
     }
     next();
 }

@@ -9,18 +9,20 @@ function users(app){
 
     app.post('/users/reg',function(req,res,next){
 
-        var newUser = new User();
+        var newUser;
+        newUser = new User({
+            username: req.body.username,
+            inputPassword: req.body.inputPassword,
+            inputRePassword: req.body.inputRePassword,
+            inputEMail: req.body.inputEMail,
+            inputPhone: req.body.inputPhone,
+            inputQQ: req.body.inputQQ,
+            inputCompany: req.body.inputCompany
+        });
 
-        console.log("reg get");
+        console.log("reg post");
 
-        console.log(req.body.username);
-        console.log(req.body.inputPassword);
-        console.log(req.body.inputRePassword);
-        console.log(req.body.inputEMail);
-        console.log(req.body.inputPhone);
-        console.log(req.body.inputQQ);
-        console.log(req.body.inputCompany);
-
+        res.redirect('/');
     });
 
     app.get('/users/login',function(req,res,next){
