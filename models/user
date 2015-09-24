@@ -12,7 +12,7 @@ function User(user){
 
 module.exports = User;
 
-User.prototype.save = function(callback){
+User.prototype.save = function(){
     mysql.connect();
     var username = this.username,
         password = this.password,
@@ -20,18 +20,35 @@ User.prototype.save = function(callback){
         phone = this.phone,
         QQ = this.QQ,
         Company = this.Company;
-    var insertSQL = 'insert into t_user(username,password,Email,phone,QQ,Company) values('+
-        username+','+
-        password+','+
-        Email+','+
-        phone+','+
-        QQ+','+
-        Company+','+
-        ');';
+    var insertSQL = 'insert into t_user (username,password,Email,phone,QQ,Company) values("'+
+        username+'","'+
+        password+'","'+
+        Email+'","'+
+        phone+'","'+
+        QQ+'","'+
+        Company+
+        '");';
     mysql.query(insertSQL,function(err,res){
-        if(err) console.log(err);
+        if(err){
+            console.log(err);
+        }
         console.log("Save User ==>");
         console.log(res);
     });
 
+    mysql.end();
+    return true;
+};
+
+User.get = function(username,callback){
+    mysql.connect();
+    var selectSQL = 'select * from t_user where username = "'+
+            username + '";';
+    mysql.query(selectSQL,function(err,res){
+        if(err){
+            console.log(err);
+        }
+        callback(null,res[0]);
+    });
+    //mysql.end();
 };

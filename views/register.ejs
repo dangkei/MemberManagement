@@ -1,36 +1,39 @@
 <%- include header.ejs %>
 <div class="container-fluid" style="margin-top:50px ">
-  <form class="form-horizontal" method="post">
-	<div class="header">填写注册信息</div>
+  <form class="form-horizontal" method="post" >
+	<fieldset>
+	<legend class="header"><%=title%></legend>
 	<div class="form-group">
 	  <label for="username" class="col-sm-2 control-label" >用户名:</label>
 	  <div class="col-sm-4">
-		<input type="text" class="form-control" id="username" name="username" placeholder="必填 用户名">
+		<input type="text" class="form-control" id="username" name="username" placeholder="必填 用户名" required>
 	  </div>
 	</div>
 	<div class="form-group">
 	  <label for="inputPassword" class="col-sm-2 control-label" >密码:</label>
 	  <div class="col-sm-4">
-		<input type="password" class="form-control" id="inputPassword" name="inputPassword"placeholder="必填 用户名">
+		<input type="password" class="form-control" id="inputPassword" name="inputPassword"placeholder="必填 密码" required>
 	  </div>
 	</div>
 	<div class="form-group">
 	  <label for="inputRePassword" class="col-sm-2 control-label" >重复密码:</label>
 	  <div class="col-sm-4">
-		<input type="password" class="form-control" id="inputRePassword" name="inputRePassword" placeholder="必填 重复密码">
+		<input type="password" class="form-control" id="inputRePassword" name="inputRePassword" placeholder="必填 重复密码" required>
 	  </div>
+	  <% if(pwderr){ %>
+	  <label class="col-sm-2"><%= pwderr %></label>
+	  <% } %>
 	</div>
 	<div class="form-group">
 	  <label for="inputEMail" class="col-sm-2 control-label" >Email:</label>
 	  <div class="col-sm-4">
-
-		<input type="email" class="form-control" id="inputEMail" name="inputEMail" placeholder="必填 Email">
+		<input type="email" class="form-control" id="inputEMail" name="inputEMail" placeholder="必填 Email" required>
 	  </div>
 	</div>
 	<div class="form-group">
 	  <label for="inputPhone" class="col-sm-2 control-label" >电话:</label>
 	  <div class="col-sm-4">
-		<input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="必填 电话">
+		<input type="tel" class="form-control" id="inputPhone" name="inputPhone" placeholder="电话">
 	  </div>
 	</div>
 	<div class="form-group">
@@ -48,9 +51,20 @@
 	<div class="form-group">
 	  <label class="col-sm-2 control-label"></label>
 	  <div class="col-sm-4">
-		<button class="btn btn-primary" type="submit" id="ok">注册</button>
+		<button class="btn btn-primary" type="submit" id="reg">注册</button>
 	  </div>
 	</div>
+	</fieldset>
   </form>
 </div>
+<script language="JavaScript">
+  $(function(){
+	$("#reg").click(function(){
+	  if(document.getElementById("inputPassword").value != document.getElementById("inputRePassword").value){
+		alert("两次密码输入不一致!");
+		return false;
+	  }
+	});
+  });
+</script>
 <%- include footer.ejs %>

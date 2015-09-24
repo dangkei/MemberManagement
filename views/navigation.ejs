@@ -15,15 +15,22 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/users/reg">注册</a></li>
             <li><a href="#">Item2</a></li>
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Item3
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">item31</a></li>
-                    <li><a href="#">item32</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">item33</a></li>
-                    <li><a href="#">item34</a></li>
-                </ul>
+            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<% if( typeof user != 'undefined'){ %>
+				<%= user.username %>
+				<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="#">item31</a></li>
+					<li><a href="#">item32</a></li>
+					<li class="divider"></li>
+					<li><a href="#">item33</a></li>
+					<li><a href="#">item34</a></li>
+				  </ul>
+				<%}else{%>
+		  			<li><a href="/users/login">登录</a></li>
+				<%} %>
+
+
             </li>
         </ul>
     </div>
