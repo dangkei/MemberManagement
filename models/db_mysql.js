@@ -10,4 +10,12 @@ var connection = mysql.createConnection({
     database: "nodejs"
 });
 
+var commonQuery = function(callback){
+    connection = mysql.createConnection(connection.cofig);
+    connection.connect();
+    callback.call(connection,callback);
+    connection.end();
+}
+
 module.exports = connection;
+

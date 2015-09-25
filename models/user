@@ -44,11 +44,14 @@ User.get = function(username,callback){
     mysql.connect();
     var selectSQL = 'select * from t_user where username = "'+
             username + '";';
+
     mysql.query(selectSQL,function(err,res){
         if(err){
             console.log(err);
         }
         callback(null,res[0]);
+        return mysql.end();
     });
-    //mysql.end();
+
+
 };
