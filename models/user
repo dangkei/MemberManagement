@@ -13,7 +13,6 @@ function User(user){
 module.exports = User;
 
 User.prototype.save = function(){
-    mysql.connect();
     var username = this.username,
         password = this.password,
         Email = this.Email,
@@ -30,25 +29,35 @@ User.prototype.save = function(){
         '");';
     mysql.query(insertSQL,function(err,res){
         if(err){
-            console.log(err);
+            console.log('out: ' + err);
         }
         console.log("Save User ==>");
         console.log(res);
     });
 
-    mysql.end();
     return true;
 };
 
 User.get = function(username,callback){
-    mysql.connect();
+
     var selectSQL = 'select * from t_user where username = "'+
             username + '";';
-    mysql.query(selectSQL,function(err,res){
+
+    mysql.query(selectSQL, function (err, users) {
         if(err){
-            console.log(err);
+            console.log("Error ==> " + err);
+            callback(err, null);
+        } else {
+            callback(null, users[0])
         }
-        callback(null,res[0]);
+
+        /*        if(typeof users === 'undefined'){
+         return false;  //res.render('error',{error: err,message:'数据库错误'})
+         }else{
+         return  callback(null,users[0]);
+         }*/
+
     });
-    //mysql.end();
+
+
 };

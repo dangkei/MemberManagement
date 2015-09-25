@@ -1,5 +1,8 @@
 <%- include header.ejs %>
 <div class="container-fluid" style="margin-top:50px ">
+  <% if( typeof errormsg != 'undefined' && typeof errormsg != null){ %>
+  <span class="text-warning"><%= errormsg %></span>
+  <% } %>
   <form class="form-horizontal" method="post" >
 	<fieldset>
 	<legend class="header"><%=title%></legend>
@@ -20,9 +23,6 @@
 	  <div class="col-sm-4">
 		<input type="password" class="form-control" id="inputRePassword" name="inputRePassword" placeholder="必填 重复密码" required>
 	  </div>
-	  <% if(pwderr){ %>
-	  <label class="col-sm-2"><%= pwderr %></label>
-	  <% } %>
 	</div>
 	<div class="form-group">
 	  <label for="inputEMail" class="col-sm-2 control-label" >Email:</label>

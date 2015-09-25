@@ -7,8 +7,8 @@ var User = require('../models/User');
 module.exports = function (app){
 
   /* GET home page. */
-  app.get('/',filter, function(req, res, next) {
-      res.render('index', { title: 'Home' ,user: req.session.user});
+    app.get('/', function (req, res, next) {
+        res.render('index', {title: '用户信息管理', user: req.session.user});
   });
 };
 
