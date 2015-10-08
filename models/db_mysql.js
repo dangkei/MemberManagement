@@ -1,9 +1,10 @@
 /**
  * Created by Feng Huang on 21/09/2015.
  */
-var mysql = require('mysql');
+var mysql = require('mysql'),
+    settings = require('../settings');
 var connection = mysql.createConnection({
-    host: "localhost",
+        host: settings.host,
     user: "nodejs",
     password: "nodejs",
     port: 3306,
