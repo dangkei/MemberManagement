@@ -19,7 +19,7 @@ User.prototype.save = function(){
         phone = this.phone,
         QQ = this.QQ,
         Company = this.Company;
-    var insertSQL = 'insert into t_user (username,password,Email,phone,QQ,Company) values("'+
+    var insertSQL = 'insert into t_register (username,password,Email,phone,QQ,Company) values("' +
         username+'","'+
         password+'","'+
         Email+'","'+
@@ -40,7 +40,7 @@ User.prototype.save = function(){
 
 User.get = function(username,callback){
 
-    var selectSQL = 'select * from t_user where username = "'+
+    var selectSQL = 'select * from t_register where username = "' +
             username + '";';
 
     mysql.query(selectSQL, function (err, users) {

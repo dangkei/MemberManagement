@@ -19,6 +19,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var system = require('./routes/system');
 
 var settings = require('./settings');
 var session = require('express-session');
@@ -41,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //store session database
 app.use(session({
-  secret: settings.cookieSecret,
+    secret: "cookieSecret", //settings.cookieSecret,
   name: "userManager",
   key: settings.db, //cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
@@ -54,8 +55,7 @@ app.use(flash());
 //route start
 index(app);
 users(app);
-
-
+system(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

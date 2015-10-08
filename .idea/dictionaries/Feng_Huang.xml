@@ -4,7 +4,10 @@
       <w>checklogin</w>
       <w>crypto</w>
       <w>dropdown</w>
+      <w>hostconfig</w>
       <w>navbar</w>
+      <w>onerror</w>
+      <w>settingspath</w>
     </words>
   </dictionary>
 </component>

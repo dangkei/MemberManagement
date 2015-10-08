@@ -33,11 +33,7 @@ function users(app){
             } else {
                 return res.render('users_register', {title: "用户注册", errormsg: '错误,用户已经存在.请重新填写一个用户名.'});
             }
-
-            //
         });
-
-
     });
 
 
