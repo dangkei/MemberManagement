@@ -1,0 +1,20 @@
+<%- include header.ejs %>
+
+<div class="container">
+
+  <div class="h4 col-md-pull-1 bg-success"><span class="alert-success">
+	  <% if(typeof message != "undefinded" && message != null){ %>
+	  <%= message %>
+	  <% } %>
+	</span><br>
+	<span id="btnok" class="btn active btn-success center-block">确定</span>
+  </div>
+
+
+</div>
+<script language="JavaScript">
+  $("#btnok").on("click", function () {
+	window.history.go(-1);
+  })
+</script>
+<%- include footer.ejs %>

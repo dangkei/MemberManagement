@@ -44,12 +44,34 @@ function system(app) {
         fs.exists(settingspath, function (exists) {
             if (exists) {
                 settings = require(settingspath);
-                console.log(settings);
+                //console.log(settings);
                 fs.writeFile(settingspath, 'module.exports = ' + data, 'ascii', function (err) {
                     if (err) {
                         console.log('写人文件失败');
                     } else {
-                        console.log('保存成功,赶紧去看乱码吧!');
+                        //console.log('保存成功,赶紧去看乱码吧!');
+                        var mysql = require("../models/db_mysql");
+                        mysql.connect(function (err) {
+                            if (err) {
+                                console.log(err);
+                                switch (err.errno) {
+                                    case 1044:
+                                        console.log("数据库不存在或数据库名称错误.");
+                                        break;
+                                    case 1045:
+                                        console.log("用户名或者密码错误.");
+                                        break;
+                                    case 'ENOTFOUND':
+                                        console.log("服务器地址错误.");
+                                        break;
+                                    case 'ECONNREFUSED':
+                                        console.log("端口错误连接被拒绝.");
+                                        break;
+                                }
+                            }
+                        });
+                        mysql.end();
+                        return res.render('successful', {title: "系统配置", message: "保存成功,点确定返回页面."});
                     }
                 });
             } else {
@@ -58,14 +80,16 @@ function system(app) {
                         settings = require(templatepath);
                         return res.render('system_hostconfig', {settings: settings, title: '系统配置向导'});
                     } else {
-                        res.render('error', {error: {}, message: "找不到模版文件,请联系系统管理员."});
+                        return res.render('error', {error: {}, message: "找不到模版文件,请联系系统管理员."});
                     }
                 });
             }
-
-            res.render('system_hostconfig', {settings: JSON.parse(data), title: "系统配置"});
         });
     });
+
+    //app.get('/system/successful',function(req,res,next){
+    //    res.render('successful',{title:保存成功});
+    //});
 
 }
 
@@ -90,6 +114,5 @@ function checkEnviron() {
 
 }
 
-//checkEnviron();
 
 module.exports = system;

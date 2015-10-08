@@ -6,6 +6,7 @@
       <w>dropdown</w>
       <w>hostconfig</w>
       <w>navbar</w>
+      <w>nodemailer</w>
       <w>onerror</w>
       <w>settingspath</w>
     </words>

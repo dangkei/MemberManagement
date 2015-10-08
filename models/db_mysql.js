@@ -5,10 +5,10 @@ var mysql = require('mysql'),
     settings = require('../settings');
 var connection = mysql.createConnection({
         host: settings.host,
-    user: "nodejs",
-    password: "nodejs",
-    port: 3306,
-    database: "nodejs"
+        user: settings.user,
+        password: settings.password,
+        port: settings.port,
+        database: settings.db
     }),
     slice = [].slice;
 

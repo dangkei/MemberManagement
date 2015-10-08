@@ -2,7 +2,7 @@ module.exports = {
     "cookieSecret": "userManagement",
     "host": "localhost",
     "db": "nodejs",
-    "port": "3306",
+    "port": "33061",
     "user": "nodejs",
     "password": "nodejs"
 };
