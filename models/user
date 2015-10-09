@@ -12,7 +12,7 @@ function User(user){
 
 module.exports = User;
 
-User.prototype.save = function(){
+User.prototype.save = function (callback) {
     var username = this.username,
         password = this.password,
         Email = this.Email,
@@ -27,15 +27,17 @@ User.prototype.save = function(){
         QQ+'","'+
         Company+
         '");';
-    mysql.query(insertSQL,function(err,res){
+    var result = mysql.query(insertSQL, function (err, res) {
         if(err){
             console.log('out: ' + err);
         }
-        console.log("Save User ==>");
-        console.log(res);
+        //console.log("Save User ==>");
+        //console.log(res);
+        return res;
     });
 
-    return true;
+    console.log(callback);
+    //callback(result);
 };
 
 User.get = function(username,callback){

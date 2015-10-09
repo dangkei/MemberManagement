@@ -11,7 +11,7 @@
 	  <tbody>
 	  <% if(!settings){ %>
 	  <tr class="form-group">
-		<td class="modal-title danger control-label">cookSecret:</td>
+		<td class="modal-title danger control-label col-sm-1">cookSecret:</td>
 		<td colspan="2"><input class="form-control" id="cookSecret" name="cookSecret" value="usermanagement"></td>
 	  </tr>
 	  <tr class="form-group">
@@ -67,10 +67,14 @@
 		<td colspan="3"><p class="text-warning">
 			*确认后将开始保存数据库信息.请确认数据库名称和密码.如果数据库不存在将创建新的数据库.
 		  </p></td>
-		<% if(typeof error === 'undefinded' && error != null){ %>
-		<p class="alert alert-danger"><%= error %></p>
-		<% } %>
 	  </tr>
+	  <% if(typeof error != 'undefinded' && error != null){ %>
+	  <tr>
+		<td colspan="3">
+		  <p class="alert alert-danger"><%= error %></p>
+		</td>
+	  </tr>
+	  <% } %>
 	  </tbody>
 	</table>
   </form>

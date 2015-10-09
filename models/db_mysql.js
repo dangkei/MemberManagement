@@ -12,8 +12,16 @@ var connection = mysql.createConnection({
     }),
     slice = [].slice;
 
+var testconnect = function () {
+    commonQuery(function () {
+        connection.testconnect.apply(connection).on('error', onerror);
+    });
+};
+
+module.exports = connection;
+
 var commonQuery = function(callback){
-    connection = mysql.createConnection(connection.cofig);
+    connection = mysql.createConnection(connection.config);
     connection.connect();
     callback.call(connection,callback);
     connection.end();
@@ -23,7 +31,7 @@ var onerror = function (err) {
     console.log("in: " + err);
 };
 
-var query = function () {
+var query1 = function () {
     var args = arguments;
 
     commonQuery(function () {
@@ -32,5 +40,5 @@ var query = function () {
 
 };
 
-module.exports = connection;
+
 

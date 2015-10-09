@@ -14,12 +14,23 @@ function system(app) {
         fs.exists(settingspath, function (exists) {
             if (exists) {
                 settings = require(settingspath);
-                return res.render('system_hostconfig', {settings: settings, title: '修改系统配置'});
+                console.log("user: ==> " + req.session.user);
+                return res.render('system_hostconfig', {
+                    settings: settings,
+                    title: '修改系统配置',
+                    error: null,
+                    user: req.session.user
+                });
             } else {
                 fs.exists(templatepath, function (exists) {
                     if (exists) {
                         settings = require(templatepath);
-                        return res.render('system_hostconfig', {settings: settings, title: '系统配置向导'});
+                        return res.render('system_hostconfig', {
+                            settings: settings,
+                            title: '系统配置向导',
+                            error: null,
+                            user: req.session.user
+                        });
                     } else {
                         res.render('error', {error: {}, message: "找不到模版文件,请联系系统管理员."});
                     }
@@ -57,21 +68,42 @@ function system(app) {
                                 switch (err.errno) {
                                     case 1044:
                                         console.log("数据库不存在或数据库名称错误.");
+                                        return res.render("system_hostconfig", {
+                                            settings: settings,
+                                            title: "错误",
+                                            error: "数据库不存在或数据库名称错误."
+                                        });
                                         break;
                                     case 1045:
                                         console.log("用户名或者密码错误.");
+                                        return res.render("system_hostconfig", {
+                                            settings: settings,
+                                            title: "错误",
+                                            error: "用户名或者密码错误."
+                                        });
                                         break;
                                     case 'ENOTFOUND':
                                         console.log("服务器地址错误.");
+                                        return res.render("system_hostconfig", {
+                                            settings: settings,
+                                            title: "错误",
+                                            error: "服务器地址错误."
+                                        });
                                         break;
                                     case 'ECONNREFUSED':
                                         console.log("端口错误连接被拒绝.");
+                                        return res.render("system_hostconfig", {
+                                            settings: settings,
+                                            title: "错误",
+                                            error: "端口错误连接被拒绝."
+                                        });
                                         break;
                                 }
+                            } else {
+                                return res.render('successful', {title: "系统配置", message: "保存成功,点确定返回页面."});
                             }
                         });
-                        mysql.end();
-                        return res.render('successful', {title: "系统配置", message: "保存成功,点确定返回页面."});
+
                     }
                 });
             } else {
