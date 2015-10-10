@@ -62,7 +62,8 @@ function system(app) {
                     } else {
                         //console.log('保存成功,赶紧去看乱码吧!');
                         var mysql = require("../models/db_mysql");
-                        mysql.connect(function (err) {
+                        //var conn = new mysql();
+                        mysql.testconnect(function (err) {
                             if (err) {
                                 console.log(err);
                                 switch (err.errno) {
@@ -73,6 +74,7 @@ function system(app) {
                                             title: "错误",
                                             error: "数据库不存在或数据库名称错误."
                                         });
+                                        mysql.release();
                                         break;
                                     case 1045:
                                         console.log("用户名或者密码错误.");
@@ -81,6 +83,7 @@ function system(app) {
                                             title: "错误",
                                             error: "用户名或者密码错误."
                                         });
+                                        mysql.release();
                                         break;
                                     case 'ENOTFOUND':
                                         console.log("服务器地址错误.");
@@ -89,6 +92,7 @@ function system(app) {
                                             title: "错误",
                                             error: "服务器地址错误."
                                         });
+                                        mysql.release();
                                         break;
                                     case 'ECONNREFUSED':
                                         console.log("端口错误连接被拒绝.");
@@ -97,6 +101,7 @@ function system(app) {
                                             title: "错误",
                                             error: "端口错误连接被拒绝."
                                         });
+                                        mysql.release();
                                         break;
                                 }
                             } else {

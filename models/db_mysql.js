@@ -12,14 +12,6 @@ var connection = mysql.createConnection({
     }),
     slice = [].slice;
 
-var testconnect = function () {
-    commonQuery(function () {
-        connection.testconnect.apply(connection).on('error', onerror);
-    });
-};
-
-module.exports = connection;
-
 var commonQuery = function(callback){
     connection = mysql.createConnection(connection.config);
     connection.connect();
@@ -31,14 +23,23 @@ var onerror = function (err) {
     console.log("in: " + err);
 };
 
-var query1 = function () {
+connection.query = function () {
+    console.log('--------------query------------');
     var args = arguments;
-
     commonQuery(function () {
         query.apply(connection, args).on('error', onerror);
     });
 
 };
+
+connection.testconnect = function (callback) {
+    console.log('---------testconnect-----------------');
+    commonQuery(function () {
+        connection.testconnect.apply(connection).on('error', onerror);
+    });
+};
+
+module.exports = connection;
 
 
 
