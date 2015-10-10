@@ -33,10 +33,10 @@ User.prototype.save = function (callback) {
         }
         //console.log("Save User ==>");
         //console.log(res);
-        return res;
+        return true;
     });
 
-    console.log(callback);
+    //console.log(callback);
     //callback(result);
 };
 

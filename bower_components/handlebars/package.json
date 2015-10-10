@@ -1,0 +1,17 @@
+{
+  "jspm": {
+    "main": "handlebars",
+    "shim": {
+      "handlebars": {
+        "exports": "Handlebars"
+      }
+    },
+    "files": [
+      "handlebars.js",
+      "handlebars.runtime.js"
+    ],
+    "buildConfig": {
+      "minify": true
+    }
+  }
+}
