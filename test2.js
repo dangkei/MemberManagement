@@ -20,8 +20,7 @@ Obj.prototype.d = 11;               //原型的属性       对象本身访问�
 Obj.prototype.fn3 = function () {
 };   //原型的方法       对象本身访问不到
 
-
-console.log("Obj.a = " + Obj.a);
+/*console.log("Obj.a = " + Obj.a);
 console.log("Obj.fn = " + Obj.fn);
 console.log("Obj.b = " + Obj.b);
 console.log("Obj.fn1 = " + Obj.fn1);
@@ -40,4 +39,5 @@ console.log("A.fn1 = " + A.fn1);
 console.log("A.c = " + A.c);
 console.log("A.fn2 = " + A.fn2);
 console.log("A.d = " + A.d);
-console.log("A.fn3 = " + A.fn3);
+ console.log("A.fn3 = " + A.fn3);*/
+module.exports = Obj;

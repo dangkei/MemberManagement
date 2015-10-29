@@ -62,10 +62,8 @@ function system(app) {
                     } else {
                         //console.log('保存成功,赶紧去看乱码吧!');
                         var mysql = require("../models/db_mysql");
-                        //var conn = new mysql();
-                        mysql.testconnect(function (err) {
+                        mysql.testconnect(function (err, rs) {
                             if (err) {
-                                console.log(err);
                                 switch (err.errno) {
                                     case 1044:
                                         console.log("数据库不存在或数据库名称错误.");
@@ -96,6 +94,7 @@ function system(app) {
                                         break;
                                     case 'ECONNREFUSED':
                                         console.log("端口错误连接被拒绝.");
+                                        //console.log(settings);
                                         return res.render("system_hostconfig", {
                                             settings: settings,
                                             title: "错误",

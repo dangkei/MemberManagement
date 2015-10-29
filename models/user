@@ -1,4 +1,5 @@
 var mysql = require("./db_mysql");
+var db = mysql();
 
 function User(user){
     this.username = user.username;
@@ -46,18 +47,20 @@ User.get = function(username,callback){
             username + '";';
 
     mysql.query(selectSQL, function (err, users) {
+        console.log(users);
         if(err){
             console.log("Error ==> " + err);
             callback(err, null);
         } else {
-            callback(null, users[0])
+            callback(null, users)
         }
 
-        /*        if(typeof users === 'undefined'){
-         return false;  //res.render('error',{error: err,message:'数据库错误'})
+
+        if (typeof users === 'undefined') {
+            return false;  //res.render('error',{error: err,message:'数据库错误'})
          }else{
          return  callback(null,users[0]);
-         }*/
+        }
 
     });
 
